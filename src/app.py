@@ -94,6 +94,7 @@ def namespace(
 
     Args:
         namespace (str): The Kubernetes Namespace.
+        metric_name (str): The metric being queries.
     """
 
     metric = MetricIdentifier(name=metric_name)
