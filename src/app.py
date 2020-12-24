@@ -94,7 +94,7 @@ def namespace(
 
     Args:
         namespace (str): The Kubernetes Namespace.
-        metric_name (str): The metric being queries.
+        metric_name (str): The metric being queried.
     """
 
     metric = MetricIdentifier(name=metric_name)
@@ -118,7 +118,7 @@ def cluster_objects(
         resource (str): The Kubernetes Resource type (pod, service, etc.)
         name (str): The name of the specific resource.
             Could be '*' to match all or use label selector.
-        metric_name (str): The metric being queries.
+        metric_name (str): The metric being queried.
     """
     # label_selector: Optional[str] = \
     #     request.args.get('labelSelector')
@@ -148,7 +148,7 @@ def namespaced_objects(
         resource (str): The Kubernetes Resource type (pod, service, etc.)
         name (str): The name of the specific resource.
             Could be '*' to match all or use label selector.
-        metric_name (str): The metric being queries.
+        metric_name (str): The metric being queried.
     """
     # label_selector: Optional[str] = \
     #     request.args.get('labelSelector')
