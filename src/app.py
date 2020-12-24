@@ -22,7 +22,7 @@ class MetricIdentifier:
             be the selector passed into the query used to fetch this metric.
     """
     name: str
-    selector: Optional[Dict[str, str]] = field(default_factory=dict)
+    selector: Dict[str, str] = field(default_factory=dict)
 
 
 @dataclass
@@ -45,7 +45,7 @@ class MetricValue:
     value: str
     time: Optional[str] = ""
     windowSeconds: Optional[int] = 0
-    describedObject: Optional[Dict[str, str]] = field(default_factory=dict)
+    describedObject: Dict[str, str] = field(default_factory=dict)
 
 
 @dataclass
@@ -169,4 +169,4 @@ if __name__ == "__main__":
     }
     if os.environ.get("FLASK_ENV") == "development":
         kwargs['ssl_context'] = 'adhoc'
-    app.run(**kwargs)
+    app.run(**kwargs)  # type: ignore
