@@ -162,4 +162,11 @@ def namespaced_objects(
 
 
 if __name__ == "__main__":
-    app.run(ssl_context='adhoc', port=8443, host='0.0.0.0')
+    import os
+    kwargs = {
+        "port": 8443,
+        "host": "0.0.0.0"
+    }
+    if os.environ.get("FLASK_ENV") == "development":
+        kwargs['ssl_context'] = 'adhoc'
+    app.run(**kwargs)

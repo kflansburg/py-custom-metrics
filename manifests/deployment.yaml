@@ -1,0 +1,39 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: custom-metrics-apiserver
+  namespace: custom-metrics
+  labels:
+    app: custom-metrics
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: custom-metrics
+  template:
+    metadata:
+      labels:
+        app: custom-metrics
+    spec:
+      containers:
+      - name: server
+        image: python:3.8.7-slim
+        ports:
+        - containerPort: 8443
+        command: 
+        - "/bin/bash"
+        - "/app/entrypoint.sh"
+        volumeMounts:
+        - name: app
+          mountPath: "/app"
+          readOnly: true
+        - name: certs
+          mountPath: "/etc/certs"
+          readOnly: true
+      volumes:
+      - name: app
+        configMap:
+          name: app
+      - name: certs
+        secret:
+          secretName: certs
